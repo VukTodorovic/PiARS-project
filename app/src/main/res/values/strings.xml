@@ -1,0 +1,26 @@
+<resources>
+    <!--  Main Activity  -->
+    <!--  Main Fragment  -->
+    <string name="app_name">Shopping List</string>
+    <string name="login_btn">Login</string>
+    <string name="register_btn">Register</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--  Login Fragment  -->
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="invalid_credentials">Invalid credentials</string>
+    <!--  Register Fragment  -->
+    <string name="email">Email</string>
+
+    <!--  Welcome Activity  -->
+    <string name="welcome">WELCOME</string>
+    <string name="new_list">New list</string>
+    <string name="see_lists">See my lists</string>
+
+    <!--  NewList Activity  -->
+    <string name="list_title_hint">List title</string>
+    <string name="save_btn">Save</string>
+    <string name="share_list">Do you want to share this list:</string>
+    <string name="rb_yes">Yes</string>
+    <string name="rb_no">No</string>
+</resources>
