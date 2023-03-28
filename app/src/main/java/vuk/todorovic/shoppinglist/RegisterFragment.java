@@ -11,11 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class RegisterFragment extends Fragment {
 
     Button btnRegister;
+    EditText etUsername, etPassword;
+
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -33,10 +36,16 @@ public class RegisterFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         btnRegister = view.findViewById(R.id.btnRegister);
+        etUsername = view.findViewById(R.id.etUsername);
+        etPassword = view.findViewById(R.id.etPassword);
+
 
         btnRegister.setOnClickListener(view_param -> {
             // Register user
+            String inputUsername = etUsername.getText().toString();
+
             Intent intent = new Intent(requireActivity(), WelcomeActivity.class);
+            intent.putExtra("username", inputUsername);
             startActivity(intent);
         });
     }

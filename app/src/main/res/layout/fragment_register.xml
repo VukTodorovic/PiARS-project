@@ -32,7 +32,7 @@
                 android:backgroundTint="@color/gray"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp"
-                android:id="@+id/edUsername"/>
+                android:id="@+id/etUsername"/>
         </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -58,7 +58,7 @@
                 android:backgroundTint="@color/gray"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp"
-                android:id="@+id/edEmail"/>
+                android:id="@+id/etEmail"/>
         </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -85,7 +85,7 @@
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp"
                 android:inputType="textPassword"
-                android:id="@+id/edPassword"/>
+                android:id="@+id/etPassword"/>
         </LinearLayout>
 
     <Button

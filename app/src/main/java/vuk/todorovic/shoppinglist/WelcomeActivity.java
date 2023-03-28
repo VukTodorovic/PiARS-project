@@ -1,8 +1,10 @@
 package vuk.todorovic.shoppinglist;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -36,8 +38,21 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Klik na New List dugme
         btnNewList.setOnClickListener(view_param -> {
-            Intent intent = new Intent(WelcomeActivity.this, NewListActivity.class);
-            startActivity(intent);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder
+                    .setTitle(getString(R.string.alert_dialog_title))
+                    .setMessage(getString(R.string.alert_dialog_message))
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", (dialog, id) -> {
+                        Intent intent = new Intent(WelcomeActivity.this, NewListActivity.class);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    })
+                    .setNegativeButton("No", (dialog, id) -> {
+                        dialog.dismiss(); // Zatvori dijalog
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
         });
 
         // Klik na See My Lists dugme
