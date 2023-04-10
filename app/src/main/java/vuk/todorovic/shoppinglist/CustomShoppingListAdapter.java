@@ -53,8 +53,7 @@ public class CustomShoppingListAdapter extends BaseAdapter {
         // Na obican klik se otvara ShowListActivity
         convertView.setOnClickListener(view_param -> {
             Intent intent = new Intent(context, ShowListActivity.class);
-            ArrayList<Article> articles = shoppingList.getArticles();
-            intent.putExtra("articles", articles);
+            intent.putExtra("shoppingList", shoppingList);
             context.startActivity(intent);
         });
 

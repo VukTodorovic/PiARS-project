@@ -29,4 +29,8 @@
     <string name="share_list">Do you want to share this list:</string>
     <string name="rb_yes">Yes</string>
     <string name="rb_no">No</string>
+
+    <!--  ShowList Activity  -->
+    <string name="article_name_hint">Article name</string>
+    <string name="add_btn">Add</string>
 </resources>

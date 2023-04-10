@@ -1,15 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ShowListActivity"
-    android:background="@color/background">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test"
         android:textColor="@color/white"
         android:textSize="20dp"
-        android:text="Show List Activity"/>
+        android:textAlignment="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/tvListTitle"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:hint="@string/article_name_hint"
+            android:textColorHint="@color/gray"
+            android:backgroundTint="@color/gray"
+            android:textColor="@color/white"
+            android:id="@+id/etListTitle"
+            android:layout_marginRight="10dp"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_btn"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/trinity"
+            android:id="@+id/btnSave"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvArticle"
+        android:layout_width="match_parent"
+        android:layout_height="617dp"
+        tools:listitem="@layout/article_item" />
+
+
 </LinearLayout>

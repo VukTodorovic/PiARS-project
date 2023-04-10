@@ -1,8 +1,9 @@
 package vuk.todorovic.shoppinglist;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ShoppingList {
+public class ShoppingList implements Serializable {
     private String title;
     private boolean shared;
 
@@ -36,6 +37,7 @@ public class ShoppingList {
 
     public void addArticle(String name, boolean done) {
         Article article = new Article(name, done);
+        articles.add(article);
     }
 
     public ArrayList<Article> getArticles() {
