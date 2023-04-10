@@ -37,7 +37,7 @@ public class CustomArticleListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.shopping_list_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.article_item, parent, false);
         }
 
         Article article = articles.get(position);
@@ -46,7 +46,8 @@ public class CustomArticleListAdapter extends BaseAdapter {
         tvArticleName.setText(article.getName());
 
         TextView cbArticleDone = convertView.findViewById(R.id.cbArticleDone);
-        // Nista ne radimo sa ovim za sad
+        cbArticleDone.setSelected(article.getDone());
+        // Postaviti onclick listener da precrta tekst
 
         return convertView;
     }

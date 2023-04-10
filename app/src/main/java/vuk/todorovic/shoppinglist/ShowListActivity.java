@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class ShowListActivity extends AppCompatActivity {
     private ShoppingList shoppingList;
     private ArrayList<Article> articles;
     ListView lvArticleList;
+    TextView tvListTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +28,13 @@ public class ShowListActivity extends AppCompatActivity {
             Toast.makeText(this, "Data error", Toast.LENGTH_LONG).show();
         }
 
+        // Set shopping list title
+        tvListTitle = findViewById(R.id.tvListTitle);
+        tvListTitle.setText(shoppingList.getTitle());
+
         // Populate ListView with data
         lvArticleList = findViewById(R.id.lvArticleList);
         articles = shoppingList.getArticles();
-
         CustomArticleListAdapter adapter = new CustomArticleListAdapter(articles, this);
         lvArticleList.setAdapter(adapter);
     }
