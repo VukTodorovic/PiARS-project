@@ -65,8 +65,14 @@
             android:text="@string/see_lists"
             android:id="@+id/btnSeeMyLists"
             android:textColor="@color/black"
-            android:backgroundTint="@color/trinity"/>
+            android:backgroundTint="@color/trinity" />
     </LinearLayout>
+
+    <ListView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/lvShoppingLists"
+        tools:listitem="@layout/shopping_list_item"/>
 
 
 </LinearLayout>
