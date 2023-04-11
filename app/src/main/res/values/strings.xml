@@ -33,4 +33,5 @@
     <!--  ShowList Activity  -->
     <string name="article_name_hint">Article name</string>
     <string name="add_btn">Add</string>
+    <string name="name_validation_error">Please input article name</string>
 </resources>

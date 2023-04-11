@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +17,8 @@ public class ShowListActivity extends AppCompatActivity {
     private ArrayList<Article> articles;
     ListView lvArticleList;
     TextView tvListTitle;
+    Button btnAddArticle;
+    EditText etArticleName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,5 +41,18 @@ public class ShowListActivity extends AppCompatActivity {
         articles = shoppingList.getArticles();
         CustomArticleListAdapter adapter = new CustomArticleListAdapter(articles, this);
         lvArticleList.setAdapter(adapter);
+
+        // Handle onclick for adding new Article
+        btnAddArticle = findViewById(R.id.btnAddNewArticle);
+        etArticleName = findViewById(R.id.etArticleName);
+        btnAddArticle.setOnClickListener(view -> {
+            String articleName = etArticleName.getText().toString();
+            if(!articleName.isEmpty()){
+                Article article = new Article(articleName, false);
+                articles.add(0, article);
+                adapter.notifyDataSetChanged();
+            }
+            Toast.makeText(this, getResources().getString(R.string.name_validation_error), Toast.LENGTH_SHORT).show();
+        });
     }
 }

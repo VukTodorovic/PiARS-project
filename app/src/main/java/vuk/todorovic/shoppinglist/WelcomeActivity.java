@@ -61,7 +61,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Klik na See My Lists dugme
         btnSeeMyLists.setOnClickListener(view_param -> {
-            Toast.makeText(this, "Will be done in chekpoint 2", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Will be done in chekpoint 3", Toast.LENGTH_LONG).show();
         });
 
         // Populateovanje liste

@@ -33,7 +33,7 @@
             android:textColorHint="@color/gray"
             android:backgroundTint="@color/gray"
             android:textColor="@color/white"
-            android:id="@+id/etListTitle"
+            android:id="@+id/etArticleName"
             android:layout_marginRight="10dp"/>
         <Button
             android:layout_width="0dp"
@@ -42,7 +42,7 @@
             android:text="@string/add_btn"
             android:textColor="@color/black"
             android:backgroundTint="@color/trinity"
-            android:id="@+id/btnSave"/>
+            android:id="@+id/btnAddNewArticle"/>
     </LinearLayout>
 
     <ListView

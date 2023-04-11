@@ -2,10 +2,12 @@ package vuk.todorovic.shoppinglist;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -45,10 +47,36 @@ public class CustomArticleListAdapter extends BaseAdapter {
         TextView tvArticleName = convertView.findViewById(R.id.tvArticleName);
         tvArticleName.setText(article.getName());
 
-        TextView cbArticleDone = convertView.findViewById(R.id.cbArticleDone);
-        cbArticleDone.setSelected(article.getDone());
-        // Postaviti onclick listener da precrta tekst
+        CheckBox cbArticleDone = convertView.findViewById(R.id.cbArticleDone);
+        cbArticleDone.setChecked(article.getDone());
+
+        if(article.getDone()) {
+            tvArticleName.setPaintFlags(tvArticleName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG); // Anything OR 1 will be 1
+        }
+        else {
+            tvArticleName.setPaintFlags(tvArticleName.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG); // !1 = 0 and anything AND 0 will be 0
+        }
+
+        // Set onclick listener to do striketrough
+        cbArticleDone.setOnCheckedChangeListener((view_param, isChecked) -> {
+            if(isChecked) {
+                tvArticleName.setPaintFlags(tvArticleName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG); // Bilo sta ili 1 bice 1
+            }
+            else {
+                tvArticleName.setPaintFlags(tvArticleName.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG); // !1 = 0 a bilo sta i 0 dace 0
+            }
+        });
+
+        // Delete article on long click event
+        convertView.setOnLongClickListener(v -> {
+            articles.remove(position);
+            notifyDataSetChanged();
+            return true;
+        });
+
 
         return convertView;
+
+
     }
 }

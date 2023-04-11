@@ -50,18 +50,19 @@ public class CustomShoppingListAdapter extends BaseAdapter {
         String sharedText = shoppingList.getShared() ? "True" : "False";
         tvListShared.setText(sharedText);
 
-        // Na obican klik se otvara ShowListActivity
-        convertView.setOnClickListener(view_param -> {
+        // Open ShowListActivity on click
+        convertView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ShowListActivity.class);
             intent.putExtra("shoppingList", shoppingList);
             context.startActivity(intent);
         });
 
-        // Na dugacak klik se brise item
-//        convertView.setOnLongClickListener((parent_param, view_param, position_param, id) -> {
-//            // Delete item
-//            Toast.makeText(context, "Delete shopping list", Toast.LENGTH_SHORT).show();
-//        });
+        // Delete shopping list on long click event
+        convertView.setOnLongClickListener(v -> {
+            shoppingLists.remove(position);
+            notifyDataSetChanged();
+            return true;
+        });
 
         return convertView;
     }
