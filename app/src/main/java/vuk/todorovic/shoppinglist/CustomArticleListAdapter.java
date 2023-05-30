@@ -1,7 +1,6 @@
 package vuk.todorovic.shoppinglist;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,22 +12,40 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class CustomArticleListAdapter extends BaseAdapter {
-    private ArrayList<Article> articles;
     private Context context;
+    private ArrayList<Article> tasks;
+    private DatabaseHelper database_helper;
 
-    public CustomArticleListAdapter(ArrayList<Article> articles, Context context) {
-        this.articles = articles;
+    public CustomArticleListAdapter(Context context) {
+
         this.context = context;
+        this.tasks = new ArrayList<Article>();
+        database_helper =  new DatabaseHelper(context);
+
+    }
+
+    public void clearTasks(){
+        tasks.clear();
+        notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return articles.size();
+        return tasks.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return articles.get(position);
+        return tasks.get(position);
+    }
+
+    public void setCheck(int position, boolean check){
+
+        database_helper.setChecked(tasks.get(position).getId(), check);
+        new HttpHelper().setChecked(tasks.get(position).getId(), check);
+        tasks.get(position).setCheck(check);
+        notifyDataSetChanged();
+
     }
 
     @Override
@@ -36,47 +53,65 @@ public class CustomArticleListAdapter extends BaseAdapter {
         return position;
     }
 
+    public void removeItem(int position){
+
+        database_helper.removeTask(tasks.get(position).getId(), tasks.get(position).getOwner());
+        new HttpHelper().removeTask(tasks.get(position).getId(), tasks.get(position).getOwner());
+        tasks.remove(position);
+        notifyDataSetChanged();
+
+    }
+
+    public void addItem(Article article){
+        tasks.add(article);
+        notifyDataSetChanged();
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.article_item, parent, false);
+
+            viewHolder = new ViewHolder();
+            viewHolder.title = convertView.findViewById(R.id.tvArticleName);
+            viewHolder.check = convertView.findViewById(R.id.cbArticleDone);
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Article article = articles.get(position);
+        Article task = (Article) getItem(position);
+        viewHolder.title.setText(task.getTitle());
 
-        TextView tvArticleName = convertView.findViewById(R.id.tvArticleName);
-        tvArticleName.setText(article.getName());
-
-        CheckBox cbArticleDone = convertView.findViewById(R.id.cbArticleDone);
-        cbArticleDone.setChecked(article.getDone());
-
-        if(article.getDone()) {
-            tvArticleName.setPaintFlags(tvArticleName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG); // Anything OR 1 will be 1
-        }
-        else {
-            tvArticleName.setPaintFlags(tvArticleName.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG); // !1 = 0 and anything AND 0 will be 0
+        try{
+            viewHolder.check.setChecked(database_helper.getChecked(task.getId()));
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
-        // Set onclick listener to do striketrough
-        cbArticleDone.setOnCheckedChangeListener((view_param, isChecked) -> {
-            if(isChecked) {
-                tvArticleName.setPaintFlags(tvArticleName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG); // Bilo sta ili 1 bice 1
-            }
-            else {
-                tvArticleName.setPaintFlags(tvArticleName.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG); // !1 = 0 a bilo sta i 0 dace 0
-            }
+        viewHolder.check.setOnClickListener(view -> {
+            setCheck(position, viewHolder.check.isChecked());
         });
 
-        // Delete article on long click event
-        convertView.setOnLongClickListener(v -> {
-            articles.remove(position);
-            notifyDataSetChanged();
-            return true;
-        });
+        if (task.getCheck()) {
+            viewHolder.title.setPaintFlags(viewHolder.title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            viewHolder.title.setPaintFlags(viewHolder.title.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+        }
 
+        convertView.setOnLongClickListener(view -> {
+            removeItem(position);
+            return false;
+        });
 
         return convertView;
+    }
 
-
+    private static class ViewHolder {
+        TextView title;
+        CheckBox check;
     }
 }

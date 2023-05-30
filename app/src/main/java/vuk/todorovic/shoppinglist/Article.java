@@ -3,27 +3,46 @@ package vuk.todorovic.shoppinglist;
 import java.io.Serializable;
 
 public class Article implements Serializable {
-    private String name;
-    private boolean done;
+    private String title;
+    private boolean check;
+    private String id;
+    private String owner;
 
-    public Article(String name, boolean done) {
-        this.name = name;
-        this.done = done;
+    public Article(String owner, String id, String title, boolean check) {
+        this.title = title;
+        this.check = check;
+        this.id = id;
+        this.owner = owner;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
+    }
+    public boolean getCheck() {
+        return check;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public boolean getDone() {
-        return done;
+    public void setCheck(boolean check) {
+        this.check = check;
     }
 
-    public void setDone(boolean done) {
-        this.done = done;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

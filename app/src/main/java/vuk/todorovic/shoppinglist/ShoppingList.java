@@ -6,41 +6,35 @@ import java.util.ArrayList;
 public class ShoppingList implements Serializable {
     private String title;
     private boolean shared;
+    private String owner;
 
-    private ArrayList<Article> articles;
-
-    public ShoppingList(String title, boolean shared) {
+    public ShoppingList(String owner, String title, boolean shared) {
+        this.owner = owner;
         this.title = title;
         this.shared = shared;
-        this.articles = new ArrayList<>();
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public boolean getShared() {
         return shared;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setShared(boolean shared) {
         this.shared = shared;
     }
 
-    public void addArticle(Article article) {
-        articles.add(article);
+    public String getOwner() {
+        return owner;
     }
 
-    public void addArticle(String name, boolean done) {
-        Article article = new Article(name, done);
-        articles.add(article);
-    }
-
-    public ArrayList<Article> getArticles() {
-        return articles;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

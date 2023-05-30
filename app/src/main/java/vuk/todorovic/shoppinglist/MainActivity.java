@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
         MainFragment mainFragment = new MainFragment();
         // LoginFragment loginFragment = new LoginFragment();
         // RegisterFragment registerFragment = new RegisterFragment();
+
+        // Start service
+        Intent serviceIntent = new Intent(this, DatabaseSyncService.class);
+        startService(serviceIntent);
 
         // Load MainFragment into Frame Layout
         FragmentManager fragmentManager = getSupportFragmentManager();

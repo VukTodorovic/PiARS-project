@@ -15,7 +15,9 @@
     <!--  Welcome Activity  -->
     <string name="welcome">WELCOME</string>
     <string name="new_list">New list</string>
-    <string name="see_lists">See my lists</string>
+    <string name="see_my_lists">See my lists</string>
+    <string name="see_shared_lists">See shared lists</string>
+    <string name="see_all_lists">See all lists</string>
     <string name="alert_dialog_title">Add new list</string>
     <string name="alert_dialog_message">Are you sure that you want to create new list?</string>
 
@@ -33,5 +35,6 @@
     <!--  ShowList Activity  -->
     <string name="article_name_hint">Article name</string>
     <string name="add_btn">Add</string>
+    <string name="refresh_btn">Refresh</string>
     <string name="name_validation_error">Please input article name</string>
 </resources>
